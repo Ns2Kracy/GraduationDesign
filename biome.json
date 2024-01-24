@@ -1,0 +1,57 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2
+    },
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": true
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "tab",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "tab",
+      "indentWidth": 2,
+      "jsxQuoteStyle": "double",
+      "quoteStyle": "double",
+      "trailingComma": "all",
+      "quoteProperties": "asNeeded",
+      "lineWidth": 100
+    }
+  },
+  "vcs": {
+    "enabled": true,
+    "root": ".",
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignore": [
+      ".styled-system/*",
+      "./node_modules/*",
+      "./pnpm-lock.yaml",
+      "./.output",
+      "./.vinxi"
+    ]
+  }
+}
