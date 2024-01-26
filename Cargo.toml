@@ -5,7 +5,7 @@ edition = "2021"
 
 [workspace]
 resolver = "2"
-members = [".", "crates/migration"]
+members = [".", "crates/entity", "crates/migration"]
 
 [workspace.dependencies]
 # orm
@@ -13,6 +13,10 @@ sea-orm = { version = "0.12.10" }
 
 # async runtime
 tokio = { version = "1.35.1", features = ["full"] }
+
+# serialization and deserialization
+serde = { version = "1.0.193", features = ["derive"] }
+serde_json = "1.0.108"
 
 [dependencies]
 # async runtime
@@ -25,12 +29,16 @@ sea-orm = { workspace = true, features = [
     "macros",
 ] }
 
+# serialization and deserialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# gd crates
+gd_entity = { path = "crates/entity" }
+gd_migration = { path = "crates/migration" }
+
 # lazy static
 once_cell = "1.19.0"
-
-# serialization and deserialization
-serde = { version = "1.0.193", features = ["derive"] }
-serde_json = "1.0.108"
 
 # error handling
 anyhow = "1.0.76"
@@ -41,7 +49,6 @@ validator = { version = "0.16.1", features = ["derive"] }
 
 # crypto
 bcrypt = "0.15.0"
-ring = "0.17.7"
 
 # jwt
 jsonwebtoken = "9.1.0"
@@ -61,22 +68,6 @@ tower-http = { version = "0.5.0", features = ["full"] }
 # uuid
 uuid = { version = "1.6.1", features = ["v4"] }
 
-# dotenv
-dotenv = "0.15.0"
-
-# random
-rand = "0.8.5"
-
-# data encoding
-data-encoding = "2.5.0"
-
-# futures for async
-futures = "0.3.30"
-futures-util = "0.3.30"
-
-# redis client
-redis = { version = "0.24.0", features = ["tokio-native-tls-comp"] }
-
 # openapi for api docs
 utoipa = { version = "4.1.0", features = ["axum_extras", "openapi_extensions"] }
 utoipa-redoc = { version = "3.0.0", features = ["axum"] }
@@ -89,7 +80,6 @@ reqwest = "0.11.23"
 
 # handle config
 config = "0.13.4"
-
 
 
 [profile.release]
