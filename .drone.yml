@@ -7,7 +7,13 @@ platform:
   arch: amd64
 
 workspace:
-  path: /drone/src
+  path: /drone/web
+
+trigger:
+  branch:
+    - main
+  event:
+    - pull_request
 
 steps:
   - name: lint&format
