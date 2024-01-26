@@ -1,7 +1,9 @@
 use axum::{Extension, Router};
 use gd_server::{
-    api, common::logging::init_tracing, config::CONFIG, context,
-    utils::graceful_shutdown::shutdown_signal,
+    api,
+    config::CONFIG,
+    context,
+    utils::{graceful_shutdown::shutdown_signal, logger::init_tracing},
 };
 use sea_orm::Database;
 use std::sync::Arc;
