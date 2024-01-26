@@ -6,29 +6,22 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  path: /drone/src
+
 steps:
-  - name: prepare rust
+  - name: lint&format
     image: rust:latest
     commands:
       - rustup component add clippy
       - rustup component add rustfmt
-  - name: lint
-    depends_on: [prepare]
-    commands:
       - cargo clippy
       - cargo clippy -- -D warnings
       - cargo clippy --all-targets --all-features -- -D warnings
       - cargo clippy --fix
-  - name: format
-    depends_on: [prepare]
-    commands:
       - cargo fmt --all -- --check
       - cargo fmt --all
-  - name: test
-    depends_on: [prepare]
-    commands:
-      - cargo test
   - name: build
-    depends_on: [prepare]
+    image: rust:latest
     commands:
       - cargo build --release
