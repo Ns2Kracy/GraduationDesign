@@ -1,3 +1,25 @@
 kind: pipeline
 type: docker
 name: default
+
+steps:
+  - name: lint
+    image: rust:latest
+    commands:
+      - cargo clippy
+      - cargo clippy -- -D warnings
+      - cargo clippy --all-targets --all-features -- -D warnings
+      - cargo clippy --fix
+  - name: format
+    image: rust:latest
+    commands:
+      - cargo fmt --all -- --check
+      - cargo fmt --all
+  - name: test
+    image: rust:latest
+    commands:
+      - cargo test
+  - name: build
+    image: rust:latest
+    commands:
+      - cargo build --release
