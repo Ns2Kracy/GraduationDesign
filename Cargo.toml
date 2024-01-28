@@ -34,8 +34,8 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 
 # gd crates
-gd_entity = { path = "crates/entity" }
-gd_migration = { path = "crates/migration" }
+entity = { path = "crates/entity" }
+migration = { path = "crates/migration" }
 
 # lazy static
 once_cell = "1.19.0"
