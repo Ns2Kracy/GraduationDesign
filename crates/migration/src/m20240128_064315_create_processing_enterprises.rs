@@ -171,71 +171,102 @@ impl MigrationTrait for Migration {
 
 /// 加工流程管理表
 /// 用于存储加工流程的基本信息
-/// Table: 表名
-/// Id: 自增主键
-/// Uuid: 唯一标识
-/// Name: 加工流程名称
-/// RequiredRawMaterial: 所需原料
-/// ProcessingMethod: 加工方法
-/// ProcessingAt: 加工时间
+/// Table: processing_step
+/// Columns:
+///    id: serial primary key not null
+///    uuid: string unique not null
+///    name: string not null
+///    required_raw_material: string not null
+///    processing_method: string not null
+///    processing_at: date not null
 #[derive(DeriveIden)]
 enum ProcessingStep {
+    // 表名
     #[sea_orm(iden = "processing_step")]
     Table,
+    // 主键
+    #[sea_orm(iden = "step_id")]
     Id,
+    // 唯一标识
     Uuid,
+    // 加工流程名称
     Name,
+    // 所需原料
     RequiredRawMaterial,
+    // 加工方法
     ProcessingMethod,
+    // 加工时间
     ProcessingAt,
 }
 
 ///加工产品信息表
 /// 用于存储加工产品的基本信息
-/// Table: 表名
-/// Id: 自增主键
-/// Uuid: 唯一标识
-/// Name: 加工产品名称
-/// Specification: 规格
-/// ProductAt: 生产时间
-/// ProductionBatch: 生产批次
-/// ProductionNumber: 生产数量
-/// BatchNumber: 批号
-/// ExpireAt: 有效期
+/// Table: processing_product
+/// Columns:
+///    id: serial primary key not null
+///    uuid: string unique not null
+///    name: string not null
+///    specification: string not null
+///    product_at: date not null
+///    production_batch: string not null
+///    production_number: integer not null
+///    batch_number: string not null
+///    expire_at: date not null
 #[derive(DeriveIden)]
 enum ProcessingProduct {
+    // 表名
     #[sea_orm(iden = "processing_product")]
     Table,
+    // 主键
+    #[sea_orm(iden = "product_id")]
     Id,
+    // 唯一标识
     Uuid,
+    // 加工产品名称
     Name,
+    // 规格
     Specification,
+    // 生产时间
     ProductAt,
+    // 生产批次
     ProductionBatch,
+    // 生产数量
     ProductionNumber,
+    // 批号
     BatchNumber,
+    // 有效期
     ExpireAt,
 }
 
 /// 原料库存管理表
 /// 用于存储原料库存的基本信息
-/// Table: 表名
-/// Id: 自增主键
-/// Uuid: 唯一标识
-/// Name: 原料名称
-/// Specification: 规格
-/// Quantity: 数量
-/// Unit: 单位
-/// PurchaseAt: 采购时间
+/// Table: processing_raw_material_inventory
+/// Columns:
+///    id: serial primary key not null
+///    uuid: string unique not null
+///    name: string not null
+///    specification: string not null
+///    quantity: integer not null
+///    unit: string not null
+///    purchase_at: date not null
 #[derive(DeriveIden)]
 enum ProcessingRawMaterialInventory {
+    // 表名
     #[sea_orm(iden = "processing_raw_material_inventory")]
     Table,
+    // 主键
+    #[sea_orm(iden = "raw_material_inventory_id")]
     Id,
+    // 唯一标识
     Uuid,
+    // 原料名称
     Name,
+    // 规格
     Specification,
+    // 数量
     Quantity,
+    // 单位
     Unit,
+    // 采购时间
     PurchaseAt,
 }

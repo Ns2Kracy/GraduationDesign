@@ -3,24 +3,27 @@
 use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
-#[sea_orm(table_name = "crop_monitoring")]
+#[sea_orm(table_name = "logistics_courier")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: i32,
+    pub courier_id: i32,
     #[sea_orm(unique)]
     pub uuid: String,
     pub name: String,
-    pub crop: String,
-    pub soil_moisture: Decimal,
-    pub soil_temperature: Decimal,
-    pub air_humidity: Decimal,
-    pub air_temperature: Decimal,
-    pub light_intensity: Decimal,
-    pub carbon_dioxide: Decimal,
-    pub monitor_at: Date,
+    pub gender: String,
+    pub phone: String,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
-pub enum Relation {}
+pub enum Relation {
+    #[sea_orm(has_many = "super::logistics_express::Entity")]
+    LogisticsExpress,
+}
+
+impl Related<super::logistics_express::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::LogisticsExpress.def()
+    }
+}
 
 impl ActiveModelBehavior for ActiveModel {}

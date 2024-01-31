@@ -3,10 +3,10 @@
 use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
-#[sea_orm(table_name = "pesticide")]
+#[sea_orm(table_name = "planting_pesticide_use")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: i32,
+    pub pesticide_use_id: i32,
     #[sea_orm(unique)]
     pub uuid: String,
     pub crops: String,
@@ -16,7 +16,6 @@ pub struct Model {
     pub unit: String,
     pub price: Decimal,
     pub description: String,
-    pub image: String,
     pub source: String,
     pub supplier: String,
     pub apply_at: Date,
@@ -28,18 +27,18 @@ pub struct Model {
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {
     #[sea_orm(
-        belongs_to = "super::employee::Entity",
+        belongs_to = "super::planting_employee::Entity",
         from = "Column::EmployeeId",
-        to = "super::employee::Column::Id",
+        to = "super::planting_employee::Column::EmployeeId",
         on_update = "Cascade",
         on_delete = "Cascade"
     )]
-    Employee,
+    PlantingEmployee,
 }
 
-impl Related<super::employee::Entity> for Entity {
+impl Related<super::planting_employee::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::Employee.def()
+        Relation::PlantingEmployee.def()
     }
 }
 

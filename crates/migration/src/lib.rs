@@ -4,6 +4,7 @@ pub use sea_orm_migration::prelude::*;
 
 mod m20240128_041649_create_plantation_enterprises;
 mod m20240128_064315_create_processing_enterprises;
+mod m20240131_085823_create_logistics_enterprises;
 
 pub struct Migrator;
 
@@ -13,6 +14,7 @@ impl MigratorTrait for Migrator {
         vec![
             Box::new(m20240128_041649_create_plantation_enterprises::Migration),
             Box::new(m20240128_064315_create_processing_enterprises::Migration),
+            Box::new(m20240131_085823_create_logistics_enterprises::Migration),
         ]
     }
 }

@@ -3,22 +3,17 @@
 use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
-#[sea_orm(table_name = "seed")]
+#[sea_orm(table_name = "processing_raw_material_inventory")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: i32,
+    pub raw_material_inventory_id: i32,
     #[sea_orm(unique)]
     pub uuid: String,
     pub name: String,
-    pub r#type: String,
-    pub number: i32,
+    pub specification: String,
+    pub quantity: i32,
     pub unit: String,
-    pub price: Decimal,
-    pub description: String,
-    pub image: String,
-    pub source: String,
-    pub supplier: String,
-    pub purchase_date: Date,
+    pub purchase_at: Date,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

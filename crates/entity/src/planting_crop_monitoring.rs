@@ -3,19 +3,21 @@
 use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
-#[sea_orm(table_name = "plantation_plan")]
+#[sea_orm(table_name = "planting_crop_monitoring")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: i32,
+    pub crop_monitoring_id: i32,
     #[sea_orm(unique)]
     pub uuid: String,
     pub name: String,
-    pub r#type: String,
-    pub description: String,
     pub crop: String,
-    pub plantation_at: Date,
-    pub plantation_area: Decimal,
-    pub expected_yield: Decimal,
+    pub soil_moisture: Decimal,
+    pub soil_temperature: Decimal,
+    pub air_humidity: Decimal,
+    pub air_temperature: Decimal,
+    pub light_intensity: Decimal,
+    pub carbon_dioxide: Decimal,
+    pub monitor_at: Date,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

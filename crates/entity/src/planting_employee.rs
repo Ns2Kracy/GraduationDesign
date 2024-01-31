@@ -3,14 +3,15 @@
 use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
-#[sea_orm(table_name = "employee")]
+#[sea_orm(table_name = "planting_employee")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: i32,
+    pub employee_id: i32,
     #[sea_orm(unique)]
     pub uuid: String,
     pub name: String,
     pub age: i32,
+    pub sex: String,
     pub part: String,
     pub position: String,
     pub phone: String,
@@ -18,21 +19,21 @@ pub struct Model {
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {
-    #[sea_orm(has_many = "super::harvest::Entity")]
-    Harvest,
-    #[sea_orm(has_many = "super::pesticide::Entity")]
-    Pesticide,
+    #[sea_orm(has_many = "super::planting_harvest::Entity")]
+    PlantingHarvest,
+    #[sea_orm(has_many = "super::planting_pesticide_use::Entity")]
+    PlantingPesticideUse,
 }
 
-impl Related<super::harvest::Entity> for Entity {
+impl Related<super::planting_harvest::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::Harvest.def()
+        Relation::PlantingHarvest.def()
     }
 }
 
-impl Related<super::pesticide::Entity> for Entity {
+impl Related<super::planting_pesticide_use::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::Pesticide.def()
+        Relation::PlantingPesticideUse.def()
     }
 }
 

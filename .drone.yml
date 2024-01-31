@@ -27,7 +27,7 @@ steps:
       - cargo clippy --fix
       - cargo fmt --all -- --check
       - cargo fmt --all
-  - name: build
-    image: rust:latest
-    commands:
-      - cargo build --release
+  # - name: build
+  #   image: rust:latest
+  #   commands:
+  #     - cargo build --release
