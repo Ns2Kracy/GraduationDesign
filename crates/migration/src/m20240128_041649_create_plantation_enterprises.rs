@@ -10,26 +10,35 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(Employee::Table)
+                    .table(PlantationEmployee::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(Employee::Id)
+                        ColumnDef::new(PlantationEmployee::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(Employee::Uuid)
+                        ColumnDef::new(PlantationEmployee::Uuid)
                             .string()
                             .not_null()
                             .unique_key(),
                     )
-                    .col(ColumnDef::new(Employee::Name).string().not_null())
-                    .col(ColumnDef::new(Employee::Age).integer().not_null())
-                    .col(ColumnDef::new(Employee::Part).string().not_null())
-                    .col(ColumnDef::new(Employee::Position).string().not_null())
-                    .col(ColumnDef::new(Employee::Phone).string().not_null())
+                    .col(ColumnDef::new(PlantationEmployee::Name).string().not_null())
+                    .col(ColumnDef::new(PlantationEmployee::Age).integer().not_null())
+                    .col(ColumnDef::new(PlantationEmployee::Sex).string().not_null())
+                    .col(ColumnDef::new(PlantationEmployee::Part).string().not_null())
+                    .col(
+                        ColumnDef::new(PlantationEmployee::Position)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationEmployee::Phone)
+                            .string()
+                            .not_null(),
+                    )
                     .to_owned(),
             )
             .await?;
@@ -37,26 +46,38 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(Seed::Table)
+                    .table(PlantationSeed::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(Seed::Id)
+                        ColumnDef::new(PlantationSeed::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
-                    .col(ColumnDef::new(Seed::Uuid).string().not_null().unique_key())
-                    .col(ColumnDef::new(Seed::Name).string().not_null())
-                    .col(ColumnDef::new(Seed::Type).string().not_null())
-                    .col(ColumnDef::new(Seed::Number).integer().not_null())
-                    .col(ColumnDef::new(Seed::Unit).string().not_null())
-                    .col(ColumnDef::new(Seed::Price).decimal().not_null())
-                    .col(ColumnDef::new(Seed::Description).string().not_null())
-                    .col(ColumnDef::new(Seed::Image).string().not_null())
-                    .col(ColumnDef::new(Seed::Source).string().not_null())
-                    .col(ColumnDef::new(Seed::Supplier).string().not_null())
-                    .col(ColumnDef::new(Seed::PurchaseDate).date().not_null())
+                    .col(
+                        ColumnDef::new(PlantationSeed::Uuid)
+                            .string()
+                            .not_null()
+                            .unique_key(),
+                    )
+                    .col(ColumnDef::new(PlantationSeed::Name).string().not_null())
+                    .col(ColumnDef::new(PlantationSeed::Type).string().not_null())
+                    .col(ColumnDef::new(PlantationSeed::Number).integer().not_null())
+                    .col(ColumnDef::new(PlantationSeed::Unit).string().not_null())
+                    .col(ColumnDef::new(PlantationSeed::Price).decimal().not_null())
+                    .col(
+                        ColumnDef::new(PlantationSeed::Description)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(ColumnDef::new(PlantationSeed::Source).string().not_null())
+                    .col(ColumnDef::new(PlantationSeed::Supplier).string().not_null())
+                    .col(
+                        ColumnDef::new(PlantationSeed::PurchaseDate)
+                            .date()
+                            .not_null(),
+                    )
                     .to_owned(),
             )
             .await?;
@@ -65,40 +86,86 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(Pesticide::Table)
+                    .table(PlantationPesticideUse::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(Pesticide::Id)
+                        ColumnDef::new(PlantationPesticideUse::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(Pesticide::Uuid)
+                        ColumnDef::new(PlantationPesticideUse::Uuid)
                             .string()
                             .not_null()
                             .unique_key(),
                     )
-                    .col(ColumnDef::new(Pesticide::Crops).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Name).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Type).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Number).integer().not_null())
-                    .col(ColumnDef::new(Pesticide::Unit).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Price).decimal().not_null())
-                    .col(ColumnDef::new(Pesticide::Description).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Image).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Source).string().not_null())
-                    .col(ColumnDef::new(Pesticide::Supplier).string().not_null())
-                    .col(ColumnDef::new(Pesticide::ApplyAt).date().not_null())
                     .col(
-                        ColumnDef::new(Pesticide::ApplicationMethod)
+                        ColumnDef::new(PlantationPesticideUse::Crops)
                             .string()
                             .not_null(),
                     )
-                    .col(ColumnDef::new(Pesticide::Quantity).decimal().not_null())
-                    // should be foreign key reference to Employee::Id
-                    .col(ColumnDef::new(Pesticide::EmployeeId).integer().not_null())
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Name)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Type)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Number)
+                            .integer()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Unit)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Price)
+                            .decimal()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Description)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Source)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Supplier)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::ApplyAt)
+                            .date()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::ApplicationMethod)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::Quantity)
+                            .decimal()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPesticideUse::EmployeeId)
+                            .integer()
+                            .not_null(),
+                    )
                     .to_owned(),
             )
             .await?;
@@ -107,8 +174,11 @@ impl MigrationTrait for Migration {
             .create_foreign_key(
                 sea_query::ForeignKey::create()
                     .name("FK_pesticide_employee_id")
-                    .from(Pesticide::Table, Pesticide::EmployeeId)
-                    .to(Employee::Table, Employee::Id)
+                    .from(
+                        PlantationPesticideUse::Table,
+                        PlantationPesticideUse::EmployeeId,
+                    )
+                    .to(PlantationEmployee::Table, PlantationEmployee::Id)
                     .on_delete(ForeignKeyAction::Cascade)
                     .on_update(ForeignKeyAction::Cascade)
                     .to_owned(),
@@ -119,24 +189,36 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(Harvest::Table)
+                    .table(PlantationHarvest::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(Harvest::Id)
+                        ColumnDef::new(PlantationHarvest::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(Harvest::Uuid)
+                        ColumnDef::new(PlantationHarvest::Uuid)
                             .string()
                             .not_null()
                             .unique_key(),
                     )
-                    .col(ColumnDef::new(Harvest::HarvestAt).date().not_null())
-                    .col(ColumnDef::new(Harvest::Quantity).integer().not_null())
-                    .col(ColumnDef::new(Harvest::EmployeeId).integer().not_null())
+                    .col(
+                        ColumnDef::new(PlantationHarvest::HarvestAt)
+                            .date()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationHarvest::Quantity)
+                            .integer()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationHarvest::EmployeeId)
+                            .integer()
+                            .not_null(),
+                    )
                     .to_owned(),
             )
             .await?;
@@ -145,8 +227,8 @@ impl MigrationTrait for Migration {
             .create_foreign_key(
                 sea_query::ForeignKey::create()
                     .name("FK_harvest_employee_id")
-                    .from(Harvest::Table, Harvest::EmployeeId)
-                    .to(Employee::Table, Employee::Id)
+                    .from(PlantationHarvest::Table, PlantationHarvest::EmployeeId)
+                    .to(PlantationEmployee::Table, PlantationEmployee::Id)
                     .on_delete(ForeignKeyAction::Cascade)
                     .on_update(ForeignKeyAction::Cascade)
                     .to_owned(),
@@ -157,41 +239,53 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(PlantationPlan::Table)
+                    .table(PlantationPlantationPlan::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(PlantationPlan::Id)
+                        ColumnDef::new(PlantationPlantationPlan::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(PlantationPlan::Uuid)
+                        ColumnDef::new(PlantationPlantationPlan::Uuid)
                             .string()
                             .not_null()
                             .unique_key(),
                     )
-                    .col(ColumnDef::new(PlantationPlan::Name).string().not_null())
-                    .col(ColumnDef::new(PlantationPlan::Type).string().not_null())
                     .col(
-                        ColumnDef::new(PlantationPlan::Description)
+                        ColumnDef::new(PlantationPlantationPlan::Name)
                             .string()
                             .not_null(),
                     )
-                    .col(ColumnDef::new(PlantationPlan::Crop).string().not_null())
                     .col(
-                        ColumnDef::new(PlantationPlan::PlantationAt)
+                        ColumnDef::new(PlantationPlantationPlan::Type)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPlantationPlan::Description)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPlantationPlan::Crop)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationPlantationPlan::PlantationAt)
                             .date()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(PlantationPlan::PlantationArea)
+                        ColumnDef::new(PlantationPlantationPlan::PlantationArea)
                             .decimal()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(PlantationPlan::ExpectedYield)
+                        ColumnDef::new(PlantationPlantationPlan::ExpectedYield)
                             .decimal()
                             .not_null(),
                     )
@@ -203,54 +297,66 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(CropMonitoring::Table)
+                    .table(PlantationCropMonitoring::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(CropMonitoring::Id)
+                        ColumnDef::new(PlantationCropMonitoring::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(CropMonitoring::Uuid)
+                        ColumnDef::new(PlantationCropMonitoring::Uuid)
                             .string()
                             .not_null()
                             .unique_key(),
                     )
-                    .col(ColumnDef::new(CropMonitoring::Name).string().not_null())
-                    .col(ColumnDef::new(CropMonitoring::Crop).string().not_null())
                     .col(
-                        ColumnDef::new(CropMonitoring::SoilMoisture)
+                        ColumnDef::new(PlantationCropMonitoring::Name)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationCropMonitoring::Crop)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(PlantationCropMonitoring::SoilMoisture)
                             .decimal()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(CropMonitoring::SoilTemperature)
+                        ColumnDef::new(PlantationCropMonitoring::SoilTemperature)
                             .decimal()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(CropMonitoring::AirHumidity)
+                        ColumnDef::new(PlantationCropMonitoring::AirHumidity)
                             .decimal()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(CropMonitoring::AirTemperature)
+                        ColumnDef::new(PlantationCropMonitoring::AirTemperature)
                             .decimal()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(CropMonitoring::LightIntensity)
+                        ColumnDef::new(PlantationCropMonitoring::LightIntensity)
                             .decimal()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(CropMonitoring::CarbonDioxide)
+                        ColumnDef::new(PlantationCropMonitoring::CarbonDioxide)
                             .decimal()
                             .not_null(),
                     )
-                    .col(ColumnDef::new(CropMonitoring::MonitorAt).date().not_null())
+                    .col(
+                        ColumnDef::new(PlantationCropMonitoring::MonitorAt)
+                            .date()
+                            .not_null(),
+                    )
                     .to_owned(),
             )
             .await?;
@@ -261,27 +367,39 @@ impl MigrationTrait for Migration {
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         // 员工信息表
         manager
-            .drop_table(Table::drop().table(Employee::Table).to_owned())
+            .drop_table(Table::drop().table(PlantationEmployee::Table).to_owned())
             .await?;
         // 种子信息表
         manager
-            .drop_table(Table::drop().table(Seed::Table).to_owned())
+            .drop_table(Table::drop().table(PlantationSeed::Table).to_owned())
             .await?;
         // 种子信息表
         manager
-            .drop_table(Table::drop().table(Pesticide::Table).to_owned())
+            .drop_table(
+                Table::drop()
+                    .table(PlantationPesticideUse::Table)
+                    .to_owned(),
+            )
             .await?;
         // 种子信息表
         manager
-            .drop_table(Table::drop().table(Harvest::Table).to_owned())
+            .drop_table(Table::drop().table(PlantationHarvest::Table).to_owned())
             .await?;
         // 种子信息表
         manager
-            .drop_table(Table::drop().table(PlantationPlan::Table).to_owned())
+            .drop_table(
+                Table::drop()
+                    .table(PlantationPlantationPlan::Table)
+                    .to_owned(),
+            )
             .await?;
         // 种子信息表
         manager
-            .drop_table(Table::drop().table(CropMonitoring::Table).to_owned())
+            .drop_table(
+                Table::drop()
+                    .table(PlantationCropMonitoring::Table)
+                    .to_owned(),
+            )
             .await?;
 
         Ok(())
@@ -295,23 +413,21 @@ impl MigrationTrait for Migration {
 /// Uuid: 唯一标识
 /// Name: 姓名
 /// Age: 年龄
+/// Sex: 性别
 /// Part: 部门
 /// Position: 职位
 /// Phone: 电话
 #[derive(DeriveIden)]
-enum Employee {
+enum PlantationEmployee {
+    #[sea_orm(iden = "processing_employee")]
     Table,
     Id,
     Uuid,
-    // 姓名
     Name,
-    // 年龄
     Age,
-    // 部门
+    Sex,
     Part,
-    // 职位
     Position,
-    // 电话
     Phone,
 }
 
@@ -326,12 +442,12 @@ enum Employee {
 /// Unit: 种子单位
 /// Price: 种子单价
 /// Description: 种子描述
-/// Image: 种子图片
 /// Source: 种子来源
 /// Supplier: 种子供应商
 /// PurchaseDate: 种子采购日期
 #[derive(DeriveIden)]
-enum Seed {
+enum PlantationSeed {
+    #[sea_orm(iden = "processingeed")]
     Table,
     Id,
     Uuid,
@@ -341,7 +457,6 @@ enum Seed {
     Unit,
     Price,
     Description,
-    Image,
     Source,
     Supplier,
     PurchaseDate,
@@ -359,7 +474,6 @@ enum Seed {
 /// Unit: 农药单位
 /// Price: 农药单价
 /// Description: 农药描述
-/// Image: 农药图片
 /// Source: 农药来源
 /// Supplier: 农药供应商
 /// ApplyAt: 农药使用日期
@@ -367,7 +481,8 @@ enum Seed {
 /// Quantity: 农药用水量
 /// EmployeeId: 使用农药的员工 Id
 #[derive(DeriveIden)]
-enum Pesticide {
+enum PlantationPesticideUse {
+    #[sea_orm(iden = "processing_pesticide_use")]
     Table,
     Id,
     Uuid,
@@ -378,7 +493,6 @@ enum Pesticide {
     Unit,
     Price,
     Description,
-    Image,
     Source,
     Supplier,
     ApplyAt,
@@ -396,7 +510,8 @@ enum Pesticide {
 /// Quantity: 采收数量
 /// EmployeeId: 采收员工 Id
 #[derive(DeriveIden)]
-enum Harvest {
+enum PlantationHarvest {
+    #[sea_orm(iden = "processing_harvest")]
     Table,
     Id,
     Uuid,
@@ -418,7 +533,8 @@ enum Harvest {
 /// PlantationArea: 种植计划种植面积
 /// ExpectedYield: 种植计划预期产量
 #[derive(DeriveIden)]
-enum PlantationPlan {
+enum PlantationPlantationPlan {
+    #[sea_orm(iden = "processing_plantation_plan")]
     Table,
     Id,
     Uuid,
@@ -446,7 +562,8 @@ enum PlantationPlan {
 /// CarbonDioxide: 二氧化碳浓度
 /// MonitorAt: 监控日期
 #[derive(DeriveIden)]
-enum CropMonitoring {
+enum PlantationCropMonitoring {
+    #[sea_orm(iden = "processing_crop_monitoring")]
     Table,
     Id,
     Uuid,

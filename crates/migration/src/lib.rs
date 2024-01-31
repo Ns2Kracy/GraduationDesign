@@ -3,7 +3,7 @@
 pub use sea_orm_migration::prelude::*;
 
 mod m20240128_041649_create_plantation_enterprises;
-mod m20240128_064315_create_processing_company;
+mod m20240128_064315_create_processing_enterprises;
 
 pub struct Migrator;
 
@@ -12,7 +12,7 @@ impl MigratorTrait for Migrator {
     fn migrations() -> Vec<Box<dyn MigrationTrait>> {
         vec![
             Box::new(m20240128_041649_create_plantation_enterprises::Migration),
-            Box::new(m20240128_064315_create_processing_company::Migration),
+            Box::new(m20240128_064315_create_processing_enterprises::Migration),
         ]
     }
 }

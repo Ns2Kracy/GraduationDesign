@@ -100,43 +100,43 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(RawMaterialInventory::Table)
+                    .table(ProcessingRawMaterialInventory::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(RawMaterialInventory::Id)
+                        ColumnDef::new(ProcessingRawMaterialInventory::Id)
                             .integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(RawMaterialInventory::Uuid)
+                        ColumnDef::new(ProcessingRawMaterialInventory::Uuid)
                             .string()
                             .not_null()
                             .unique_key(),
                     )
                     .col(
-                        ColumnDef::new(RawMaterialInventory::Name)
+                        ColumnDef::new(ProcessingRawMaterialInventory::Name)
                             .string()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(RawMaterialInventory::Specification)
+                        ColumnDef::new(ProcessingRawMaterialInventory::Specification)
                             .string()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(RawMaterialInventory::Quantity)
+                        ColumnDef::new(ProcessingRawMaterialInventory::Quantity)
                             .integer()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(RawMaterialInventory::Unit)
+                        ColumnDef::new(ProcessingRawMaterialInventory::Unit)
                             .string()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(RawMaterialInventory::PurchaseAt)
+                        ColumnDef::new(ProcessingRawMaterialInventory::PurchaseAt)
                             .date()
                             .not_null(),
                     )
@@ -158,7 +158,11 @@ impl MigrationTrait for Migration {
             .await?;
         // 原料库存管理表
         manager
-            .drop_table(Table::drop().table(RawMaterialInventory::Table).to_owned())
+            .drop_table(
+                Table::drop()
+                    .table(ProcessingRawMaterialInventory::Table)
+                    .to_owned(),
+            )
             .await?;
 
         Ok(())
@@ -176,6 +180,7 @@ impl MigrationTrait for Migration {
 /// ProcessingAt: 加工时间
 #[derive(DeriveIden)]
 enum ProcessingStep {
+    #[sea_orm(iden = "processing_step")]
     Table,
     Id,
     Uuid,
@@ -199,6 +204,7 @@ enum ProcessingStep {
 /// ExpireAt: 有效期
 #[derive(DeriveIden)]
 enum ProcessingProduct {
+    #[sea_orm(iden = "processing_product")]
     Table,
     Id,
     Uuid,
@@ -222,7 +228,8 @@ enum ProcessingProduct {
 /// Unit: 单位
 /// PurchaseAt: 采购时间
 #[derive(DeriveIden)]
-enum RawMaterialInventory {
+enum ProcessingRawMaterialInventory {
+    #[sea_orm(iden = "processing_raw_material_inventory")]
     Table,
     Id,
     Uuid,
