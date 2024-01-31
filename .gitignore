@@ -132,3 +132,7 @@ dist
 # solid-start
 .output
 .vinxi
+
+# editor
+.idea
+.vscode
