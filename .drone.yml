@@ -15,18 +15,27 @@ trigger:
   event:
     - pull_request
 
+volumes:
+  - name: node_modules
+    host:
+      path: /volumes/drone/gd-web/node_modules
+
 steps:
-  - name: lint&format
+  - name: prepare
     image: node:20.10.0
     commands:
       - npm install -g pnpm
       - pnpm install
+  - name: lint
+    image: node:20.10.0
+    commands:
       - pnpm run lint
       - pnpm run lint:fix
+  - name: format
+    image: node:20.10.0
+    commands:
       - pnpm run format
   - name: build
     image: node:20.10.0
     commands:
-      - npm install -g pnpm
-      - pnpm install
       - pnpm run build
