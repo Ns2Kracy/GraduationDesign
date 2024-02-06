@@ -15,20 +15,28 @@ trigger:
   event:
     - pull_request
 
-volumes:
-  - name: node_modules
-    host:
-      path: /volumes/drone/gd-web/node_modules
-
 steps:
-  - name: prepare
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    pull: if-not-exists
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./.pnpm-store
+
+  - name: install
     image: node:20.10.0
     volumes:
       - name: node_modules
         path: /drone/gd-web/node_modules
     commands:
-      - npm install -g pnpm
+      - corepack enable
+      - pnpm config set store-dir .pnpm-store
       - pnpm install
+
   - name: lint
     image: node:20.10.0
     volumes:
@@ -37,6 +45,7 @@ steps:
     commands:
       - pnpm run lint
       - pnpm run lint:fix
+
   - name: format
     image: node:20.10.0
     volumes:
@@ -44,6 +53,7 @@ steps:
         path: /drone/gd-web/node_modules
     commands:
       - pnpm run format
+
   - name: build
     image: node:20.10.0
     volumes:
@@ -51,3 +61,19 @@ steps:
         path: /drone/gd-web/node_modules
     commands:
       - pnpm run build
+
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    pull: if-not-exists
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./.pnpm-store
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/drone/gd-web/cache
