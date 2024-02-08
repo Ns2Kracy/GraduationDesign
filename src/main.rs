@@ -5,6 +5,7 @@ use gd_server::{
     context,
     utils::{graceful_shutdown::shutdown_signal, logger::init_tracing},
 };
+use migration::{Migrator, MigratorTrait};
 use sea_orm::Database;
 use std::sync::Arc;
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
@@ -22,6 +23,8 @@ async fn main() {
         })
         .unwrap();
     tracing::info!("Connected to postgresql");
+
+    Migrator::up(&db, None).await.unwrap();
 
     let app = Router::new()
         .merge(api::mount())

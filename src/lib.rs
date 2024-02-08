@@ -26,8 +26,6 @@ where
     T: Serialize,
 {
     fn into_response(self) -> Response {
-        let body = Json(self);
-
-        (StatusCode::OK, body).into_response()
+        (StatusCode::OK, Json(self)).into_response()
     }
 }
