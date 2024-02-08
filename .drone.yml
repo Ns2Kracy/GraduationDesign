@@ -1,0 +1,58 @@
+kind: pipeline
+type: docker
+name: web
+
+platform:
+  os: linux
+  arch: amd64
+
+workspace:
+  path: /drone/gd-web
+
+trigger:
+  branch:
+    - main
+  event:
+    - pull_request
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/drone/gd-web/cache
+
+steps:
+  - name: install
+    image: node:20.10.0
+    volumes:
+      - name: node_modules
+        path: /drone/gd-web/node_modules
+    commands:
+      - corepack enable
+      - corepack prepare pnpm@latest-8 --activate
+      - pnpm config set store-dir .pnpm-store
+      - pnpm install
+
+  - name: lint
+    image: node:20.10.0
+    volumes:
+      - name: node_modules
+        path: /drone/gd-web/node_modules
+    commands:
+      - pnpm run lint
+      - pnpm run lint:fix
+
+  - name: format
+    image: node:20.10.0
+    volumes:
+      - name: node_modules
+        path: /drone/gd-web/node_modules
+    commands:
+      - pnpm run format
+
+  - name: build
+    image: node:20.10.0
+    volumes:
+      - name: node_modules
+        path: /drone/gd-web/node_modules
+    commands:
+      - pnpm run build
