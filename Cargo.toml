@@ -1,11 +1,6 @@
-[package]
-name = "gd-server"
-version = "0.1.0"
-edition = "2021"
-
 [workspace]
 resolver = "2"
-members = [".", "crates/entity", "crates/migration"]
+members = ["apps/server", "crates/entity", "crates/migration"]
 
 [workspace.dependencies]
 # orm
@@ -17,71 +12,3 @@ tokio = { version = "1.35.1", features = ["full"] }
 # serialization and deserialization
 serde = { version = "1.0.193", features = ["derive"] }
 serde_json = "1.0.108"
-
-[dependencies]
-# async runtime
-tokio = { workspace = true }
-
-# orm
-sea-orm = { workspace = true, features = [
-    "sqlx-postgres",
-    "runtime-tokio-native-tls",
-    "macros",
-] }
-
-# serialization and deserialization
-serde = { workspace = true }
-serde_json = { workspace = true }
-
-# gd crates
-entity = { path = "crates/entity" }
-migration = { path = "crates/migration" }
-
-# lazy static
-once_cell = "1.19.0"
-
-# error handling
-anyhow = "1.0.76"
-thiserror = "1.0.52"
-
-# params validation
-validator = { version = "0.16.1", features = ["derive"] }
-
-# crypto
-bcrypt = "0.15.0"
-
-# jwt
-jsonwebtoken = "9.1.0"
-
-# tracing aka logging
-tracing = "0.1.40"
-tracing-subscriber = { version = "0.3.18", features = ["chrono"] }
-tracing-appender = "0.2.3"
-
-# web framework
-axum = { version = "0.7.1", features = ["tracing", "ws"] }
-axum-extra = { version = "0.9.0", features = ["cookie", "typed-header"] }
-hyper = { version = "1.0.1", features = ["full"] }
-tower = { version = "0.4.13", features = ["full"] }
-tower-http = { version = "0.5.0", features = ["full"] }
-
-# uuid
-uuid = { version = "1.6.1", features = ["v4"] }
-
-# openapi for api docs
-utoipa = { version = "4.1.0", features = ["axum_extras", "openapi_extensions"] }
-utoipa-redoc = { version = "3.0.0", features = ["axum"] }
-
-# for config
-toml = "0.8.8"
-
-# http client
-reqwest = "0.11.23"
-
-# handle config
-config = "0.13.4"
-
-
-[profile.release]
-lto = true
-codegen-units = 1
