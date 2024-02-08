@@ -1,1 +1,1 @@
-# GraduationDesign Server
+# GraduationDesign
