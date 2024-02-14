@@ -2,9 +2,6 @@ kind: pipeline
 type: exec
 name: web
 
-workspace:
-  path: C:\Drone\builds\web-%RANDOM%\drone\src
-
 platform:
   os: windows
   arch: amd64
@@ -19,6 +16,9 @@ trigger:
       - pull_request
 
 steps:
+  - name: prepare
+    commands:
+      - cd apps/web
   - name: lint
     commands:
       - pnpm install
@@ -35,9 +35,6 @@ steps:
 kind: pipeline
 type: exec
 name: server
-
-workspace:
-  path: C:\Drone\builds\server-%RANDOM%\drone\src
 
 platform:
   os: windows

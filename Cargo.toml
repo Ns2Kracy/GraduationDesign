@@ -2,6 +2,10 @@
 resolver = "2"
 members = ["apps/server", "crates/entity", "crates/migration"]
 
+[workspace.package]
+edition = "2021"
+rust-version = "1.76.0"
+
 [workspace.dependencies]
 # orm
 sea-orm = { version = "0.12.10" }
