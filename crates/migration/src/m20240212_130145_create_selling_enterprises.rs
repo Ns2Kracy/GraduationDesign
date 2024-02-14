@@ -6,13 +6,50 @@ pub struct Migration;
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        // Replace the sample below with your own migration scripts
-        todo!();
+        manager
+            .create_table(
+                Table::create()
+                    .table(SellingOrder::Table)
+                    .if_not_exists()
+                    .col(
+                        ColumnDef::new(SellingOrder::Id)
+                            .integer()
+                            .not_null()
+                            .auto_increment()
+                            .primary_key(),
+                    )
+                    .col(
+                        ColumnDef::new(SellingOrder::CustomerId)
+                            .integer()
+                            .not_null(),
+                    )
+                    .col(ColumnDef::new(SellingOrder::ProductId).integer().not_null())
+                    .col(
+                        ColumnDef::new(SellingOrder::Quantity)
+                            .decimal_len(10, 2)
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(SellingOrder::Price)
+                            .decimal_len(10, 2)
+                            .not_null(),
+                    )
+                    .col(ColumnDef::new(SellingOrder::OrderDate).date().not_null())
+                    .to_owned(),
+            )
+            .await?;
+
+        Ok(())
     }
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        // Replace the sample below with your own migration scripts
-        todo!();
+        manager
+            .drop_table(Table::drop().table(SellingOrder::Table).to_owned())
+            .await?;
+        manager
+            .drop_table(Table::drop().table(SellingCustomer::Table).to_owned())
+            .await?;
+        Ok(())
     }
 }
 
