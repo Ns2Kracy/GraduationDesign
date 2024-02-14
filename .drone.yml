@@ -21,14 +21,17 @@ steps:
       - cd apps/web
   - name: lint
     commands:
+      - cd apps/web
       - pnpm install
       - pnpm run lint
       - pnpm run lint:fix
   - name: format
     commands:
+      - cd apps/web
       - pnpm run format
   - name: build
     commands:
+      - cd apps/web
       - pnpm run build
 
 ---
