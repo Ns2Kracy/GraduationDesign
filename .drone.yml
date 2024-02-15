@@ -46,7 +46,7 @@ steps:
       RUSTUP_DIST_SERVER: https://rsproxy.cn
     commands:
       - cargo clippy -- -D warnings
-      - cargo clippy --all-targets --all-features -- -D
+      - cargo clippy --all-targets --all-features -- -D warnings
       - cargo clippy --fix
   - name: fmt
     environment:
