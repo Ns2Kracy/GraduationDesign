@@ -19,16 +19,16 @@ steps:
   - name: prepare
     commands:
       - cd apps/web
+  - name: format
+    commands:
+      - cd apps/web
+      - pnpm run format
   - name: lint
     commands:
       - cd apps/web
       - pnpm install
       - pnpm run lint
       - pnpm run lint:fix
-  - name: format
-    commands:
-      - cd apps/web
-      - pnpm run format
   - name: build
     commands:
       - cd apps/web
@@ -45,14 +45,20 @@ platform:
 
 steps:
   - name: clippy
+    environment:
+      RUSTUP_DIST_SERVER: https://rsproxy.cn
     commands:
       - cargo clippy -- -D warnings
       - cargo clippy --all-targets --all-features -- -D
       - cargo clippy --fix
   - name: fmt
+    environment:
+      RUSTUP_DIST_SERVER: https://rsproxy.cn
     commands:
       - cargo fmt --all -- --check
       - cargo fmt --all
   - name: build
+    environment:
+      RUSTUP_DIST_SERVER: https://rsproxy.cn
     commands:
       - cargo build --release
