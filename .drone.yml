@@ -16,17 +16,14 @@ trigger:
       - pull_request
 
 steps:
-  - name: prepare
-    commands:
-      - cd apps/web
   - name: format
     commands:
       - cd apps/web
+      - pnpm install
       - pnpm run format
   - name: lint
     commands:
       - cd apps/web
-      - pnpm install
       - pnpm run lint
       - pnpm run lint:fix
   - name: build
