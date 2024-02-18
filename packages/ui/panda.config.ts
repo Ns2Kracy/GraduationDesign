@@ -1,10 +1,13 @@
 import { defineConfig } from "@pandacss/dev";
+import preset from "./src/preset";
 
 export default defineConfig({
-	presets: ["@pandacss/dev/presets"],
+	presets: ["@pandacss/dev/presets", preset],
 	// Whether to use css reset
 	preflight: true,
 
+	// The extension for the emitted JavaScript files
+	outExtension: "mjs",
 	// Where to look for your css declarations
 	include: ["./src/**/*.{js,jsx,ts,tsx}"],
 
@@ -16,17 +19,14 @@ export default defineConfig({
 		extend: {},
 	},
 
+	// The JSX framework to use
 	jsxFramework: "solid",
 
+	// The CSS Syntax to use to use
 	syntax: "object-literal",
 
-	strictTokens: true,
-
-	strictPropertyValues: true,
-
 	// The output directory for your css system
-	outdir: "../../package/styled-system",
-
+	outdir: "../styled-system",
 	importMap: {
 		css: "@gd/styled-system/css",
 		recipes: "@gd/styled-system/recipes",

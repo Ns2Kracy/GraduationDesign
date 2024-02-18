@@ -1,0 +1,12 @@
+.github/
+node_modules/
+apps/server/
+crates/
+logs/
+packages/styled-system
+target/
+bun.lockb
+dist/
+.vinxi/
+.output/
+README.md

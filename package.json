@@ -1,0 +1,21 @@
+{
+  "name": "@gd/monorepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "@gd/eslint-config": "*",
+    "prettier": "^3.1.1",
+    "turbo": "latest"
+  },
+  "packageManager": "bun@1.0.27",
+  "workspaces": [
+    "apps/web",
+    "packages/*"
+  ]
+}

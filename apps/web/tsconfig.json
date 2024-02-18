@@ -10,11 +10,13 @@
 		"allowJs": true,
 		"strict": true,
 		"noEmit": true,
-		"types": ["vinxi/client"],
+		"types": [
+			"vinxi/client"
+		],
 		"isolatedModules": true,
-		"paths": {
-			"~/*": ["./src/*"],
-		},
 	},
-	"include": ["src", "styled-system"],
+	"include": [
+		"src",
+		"../../package/styled-system"
+	],
 }
