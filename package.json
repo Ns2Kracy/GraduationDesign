@@ -5,12 +5,13 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "biome format --write ."
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
+    "@biomejs/biome": "1.5.3",
     "@gd/eslint-config": "*",
-    "prettier": "^3.1.1",
+    "eslint": "^8.56.0",
+    "oxlint": "^0.2.8",
     "turbo": "latest"
   },
   "packageManager": "bun@1.0.27",

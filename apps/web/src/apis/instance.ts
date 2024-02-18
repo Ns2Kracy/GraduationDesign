@@ -28,9 +28,12 @@ instance.interceptors.response.use(
 	},
 );
 
-instance.defaults.headers.common["Authorization"] = localStorage.getItem("token") || "";
+instance.defaults.headers.common["Authorization"] =
+	localStorage.getItem("token") || "";
 
 export const setToken = (token?: string) => {
 	instance.defaults.headers.common["Authorization"] = token ?? "";
 	localStorage.setItem("token", token ?? "");
 };
+
+export default instance;
