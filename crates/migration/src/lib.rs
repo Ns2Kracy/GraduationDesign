@@ -17,7 +17,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20240128_041649_create_plantation_enterprises::Migration),
             Box::new(m20240128_064315_create_processing_enterprises::Migration),
             Box::new(m20240131_085823_create_logistics_enterprises::Migration),
-            Box::new(m20240212_130145_create_selling_enterprises::Migration),
+            // Box::new(m20240212_130145_create_selling_enterprises::Migration),
         ]
     }
 }

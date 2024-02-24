@@ -9,15 +9,19 @@ pub async fn init_tracing() {
         .with(
             tracing_subscriber::fmt::layer()
                 .with_ansi(false)
-                .with_target(true)
                 .with_timer(timer.clone())
-                .with_writer(appender),
+                .pretty()
+                .with_writer(appender)
+                .with_file(false)
+                .with_line_number(false),
         )
         .with(
             tracing_subscriber::fmt::layer()
                 .with_ansi(true)
-                .with_target(false)
-                .with_timer(timer),
+                .with_timer(timer.clone())
+                .pretty()
+                .with_file(false)
+                .with_line_number(false),
         )
         .init();
 }

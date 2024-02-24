@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vinxi dev",
-		"build": "vinxi build",
+		"build": "vinxi build --preset bun",
 		"start": "vinxi start",
 		"lint": "oxlint && eslint"
 	},
