@@ -1,7 +1,8 @@
 import { defineConfig } from "@pandacss/dev";
+import gdPreset from "@gd/preset";
 
 export default defineConfig({
-	presets: ["@pandacss/dev/presets"],
+	presets: ["@pandacss/dev/presets", gdPreset],
 	// Whether to use css reset
 	preflight: true,
 
@@ -25,7 +26,7 @@ export default defineConfig({
 	strictPropertyValues: true,
 
 	// The output directory for your css system
-	outdir: "../../package/styled-system",
+	outdir: "../../packages/styled-system",
 
 	importMap: {
 		css: "@gd/styled-system/css",

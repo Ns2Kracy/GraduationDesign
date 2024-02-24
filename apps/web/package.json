@@ -7,12 +7,13 @@
 		"dev": "vinxi dev",
 		"build": "vinxi build --preset bun",
 		"start": "vinxi start",
-		"lint": "oxlint && eslint"
+		"lint": "oxlint && eslint",
+		"prepare": "panda codegen"
 	},
 	"dependencies": {
-		"@gd/ui": "workspace:*",
 		"@gd/styled-system": "workspace:*",
 		"@gd/eslint-config": "workspace:*",
+		"@gd/preset": "workspace:*",
 		"@ark-ui/solid": "^1.3.0",
 		"@solid-primitives/audio": "^1.3.15",
 		"@solid-primitives/context": "^0.2.2",

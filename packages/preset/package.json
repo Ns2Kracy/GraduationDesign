@@ -1,0 +1,31 @@
+{
+    "name": "@gd/preset",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "types": "./dist/index.d.cts",
+    "main": "./dist/index.cjs",
+    "exports": {
+        ".": {
+            "source": "./src/index.ts",
+            "types": "./dist/index.d.cts",
+            "import": {
+                "types": "./dist/index.d.cts",
+                "default": "./dist/index.cjs"
+            },
+            "require": "./dist/index.cjs"
+        }
+    },
+    "scripts": {
+        "dev": "tsup ./src/index.ts --watch",
+        "build": "tsup ./src/index.ts --dts",
+        "lint": "oxlint && eslint"
+    },
+    "dependencies": {
+        "@gd/eslint-config": "workspace:*"
+    },
+    "devDependencies": {
+        "@pandacss/dev": "^0.27.3",
+        "oxlint": "^0.2.8"
+    }
+}
