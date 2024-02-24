@@ -15,6 +15,7 @@
 	},
 	"javascript": {
 		"formatter": {
+			"enabled": true,
 			"arrowParentheses": "always",
 			"jsxQuoteStyle": "double",
 			"semicolons": "always",
