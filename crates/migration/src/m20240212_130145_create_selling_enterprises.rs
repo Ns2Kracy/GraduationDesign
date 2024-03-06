@@ -54,9 +54,13 @@ impl MigrationTrait for Migration {
 }
 
 /// 销售订单管理表
+/// 
 /// 用于存储销售订单的基本信息
+/// 
 /// Table: selling_order
+/// 
 /// Columns:
+/// 
 ///     id: serial primary key not null
 ///     customerId: integer not null references customer(customer_id) on delete restrict
 ///     productId: integer not null references product(product_id) on delete restrict
@@ -87,11 +91,15 @@ enum SellingOrder {
 }
 
 /// 客户信息表
+///
 /// 用于存储客户的基本信息
+///
 /// Table: selling_customer
+///
 /// Columns:
+/// 
 ///     id: serial primary key not null
-///     n
+///     
 #[derive(DeriveIden)]
 enum SellingCustomer {
     #[sea_orm(iden = "seliling_customer")]

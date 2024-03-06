@@ -170,9 +170,13 @@ impl MigrationTrait for Migration {
 }
 
 /// 加工流程管理表
+/// 
 /// 用于存储加工流程的基本信息
+/// 
 /// Table: processing_step
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique not null
 ///    name: string not null
@@ -200,9 +204,13 @@ enum ProcessingStep {
 }
 
 ///加工产品信息表
+/// 
 /// 用于存储加工产品的基本信息
+/// 
 /// Table: processing_product
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique not null
 ///    name: string not null
@@ -239,9 +247,13 @@ enum ProcessingProduct {
 }
 
 /// 原料库存管理表
+/// 
 /// 用于存储原料库存的基本信息
+/// 
 /// Table: processing_raw_material_inventory
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique not null
 ///    name: string not null

@@ -387,9 +387,13 @@ impl MigrationTrait for Migration {
 }
 
 /// 员工信息表
+/// 
 /// 用于存储员工的基本信息
+/// 
 /// Table: plant_employee
+/// 
 /// Columns:
+/// 
 ///    Id: interger serial primary key not null
 ///    Uuid: string unique key not null
 ///    Name: string not null
@@ -423,9 +427,13 @@ enum PlantingEmployee {
 }
 
 /// 种子信息表
+/// 
 /// 用于存储种子的基本信息
+/// 
 /// Table: plant_seed
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique key not null
 ///    name: string not null
@@ -468,9 +476,13 @@ enum PlantingSeed {
 }
 
 /// 农药使用信息表
+/// 
 /// 用于存储农药的使用信息
+/// 
 /// Table: plant_pesticide_use
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique key not null
 ///    crops: string not null
@@ -525,9 +537,13 @@ enum PlantingPesticideUse {
 }
 
 /// 采收信息表
+/// 
 /// 用于存储采收的基本信息
+/// 
 /// Table: plant_harvest
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique key not null
 ///    crop: string not null
@@ -557,9 +573,13 @@ enum PlantingHarvest {
 }
 
 /// 种植计划管理表
+/// 
 /// 用于存储种植计划的基本信息
+/// 
 /// Table: plant_planting_plan
+/// 
 /// Columns:
+/// 
 ///    id: interger serial primary key not null
 ///    uuid: string unique key not null
 ///    name: string not null
@@ -599,9 +619,13 @@ enum PlantingPlantingPlan {
 }
 
 /// 作物监控信息表
+/// 
 /// 用于存储作物监控的基本信息
+/// 
 /// Table: plant_crop_monitoring
+/// 
 /// Columns:
+/// 
 ///    id: serial primary key not null
 ///    uuid: string unique key not null
 ///    name: string not null
