@@ -147,13 +147,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# solid-start
-.output
-.vinxi
-
 # editor
 .idea
 .vscode
-
 
 .turbo

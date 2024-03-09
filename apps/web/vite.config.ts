@@ -1,12 +1,9 @@
-import { defineConfig } from "@solidjs/start/config";
+import { defineConfig } from "vite";
+import solid from "vite-plugin-solid";
 
 export default defineConfig({
-	start: {
-		ssr: false,
-		server: {
-			prerender: {
-				crawlLinks: true,
-			},
-		},
+	plugins: [solid()],
+	build: {
+		outDir: "../../dist",
 	},
 });
