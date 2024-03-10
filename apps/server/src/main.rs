@@ -8,7 +8,11 @@ use gd_server::{
 use migration::{Migrator, MigratorTrait};
 use sea_orm::Database;
 use std::sync::Arc;
-use tower_http::{cors::CorsLayer, trace::TraceLayer};
+use tower_http::{
+    cors::CorsLayer,
+    services::{ServeDir, ServeFile},
+    trace::TraceLayer,
+};
 
 #[tokio::main]
 async fn main() {
@@ -26,7 +30,10 @@ async fn main() {
 
     Migrator::up(&db, None).await.unwrap();
 
+    let serve_dir = ServeDir::new("dist").not_found_service(ServeFile::new("dist/index.html"));
+
     let app = Router::new()
+        .nest_service("/", serve_dir)
         .merge(api::mount())
         .layer(Extension(Arc::new(context::Context { db })))
         .layer(CorsLayer::permissive())
