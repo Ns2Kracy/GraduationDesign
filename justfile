@@ -3,7 +3,8 @@ _list:
 
 alias f := fmt
 alias l := lint
-alias b := build
+alias bd := build-dev
+alias br := build-release
 alias s := start
 alias u := update
 
@@ -19,12 +20,6 @@ lint:
     bun run lint
     @echo "All linted! ✨"
 
-build:
-    @echo "Building for production..."
-    cargo build --release
-    bun run build
-    @echo "All built! ✨"
-
 dev:
     @echo "Starting development server..."
     cargo run
@@ -38,6 +33,33 @@ update:
     cargo update
     bun update
     @echo "All up to date! ✨"
+
+build-server-dev:
+    @echo "Building for production..."
+    cargo build
+    @echo "Done!"
+
+build-server-release:
+    @echo "Building production server..."
+    cargo build --release
+    @echo "Done!"
+
+build-web:
+    @echo "Building web..."
+    bun run build
+    @echo "Done!"
+
+build-dev:
+    @echo "Building development server..."
+    just build-server-dev
+    just build-web
+    @echo "All built! ✨"
+
+build-release:
+    @echo "Building for production..."
+    just build-server-release
+    just build-web
+    @echo "All built! ✨"
 
 deploy:
     @echo "Start deploying to production..."

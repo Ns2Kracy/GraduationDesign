@@ -16,7 +16,7 @@
     "turbo": "latest",
     "typescript": "^5.3.3"
   },
-  "packageManager": "bun@1.0.27",
+  "packageManager": "bun@1.0.30",
   "workspaces": [
     "apps/web",
     "packages/*"
