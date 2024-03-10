@@ -7,7 +7,6 @@ mod m20240128_064315_create_processing_enterprises;
 mod m20240131_085823_create_logistics_enterprises;
 mod m20240212_130145_create_selling_enterprises;
 
-
 pub struct Migrator;
 
 #[async_trait::async_trait]

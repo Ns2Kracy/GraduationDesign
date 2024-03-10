@@ -32,8 +32,6 @@
 			"target",
 			"crates/*",
 			"apps/server/*",
-			"apps/web/.output/*",
-			"apps/web/.vinxi/*",
 			"packages/styled-system/*"
 		]
 	}

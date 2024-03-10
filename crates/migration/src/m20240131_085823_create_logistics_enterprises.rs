@@ -265,13 +265,13 @@ impl MigrationTrait for Migration {
 }
 
 /// 快递员信息表
-/// 
+///
 /// 用于存储快递员的信息
-/// 
+///
 /// Table: logistics_courier
-/// 
+///
 /// Columns:
-/// 
+///
 ///    id: serial primary key not null
 ///    uuid: string unique not null
 ///    name: string not null
@@ -295,13 +295,13 @@ enum LogisticsCourier {
 }
 
 /// 收发件信息表
-/// 
+///
 /// 用于存储收发件的信息
-/// 
+///
 /// Table: logistics_express
-/// 
+///
 /// Columns:
-/// 
+///
 ///    id: interger serial primary key not null
 ///    uuid: string unique not null
 ///    sender_name: string not null
@@ -353,11 +353,11 @@ enum LogisticsExpress {
 }
 
 /// 仓储管理表
-/// 
+///
 /// 用于存储仓储的信息
-/// 
+///
 /// Table: logistics_warehouse
-/// 
+///
 ///    Columns:
 ///    id: serial primary key not null
 ///    uuid: string unique not null
@@ -383,13 +383,13 @@ enum LogisticsWarehouse {
 }
 
 /// 运输记录表
-/// 
+///
 /// 用于存储运输记录的信息
-/// 
+///
 /// Table: logistics_transport
-/// 
+///
 /// Columns:
-/// 
+///
 ///    id: serial primary key not null
 ///    uuid: string unique not null
 ///    product_name: string not null
