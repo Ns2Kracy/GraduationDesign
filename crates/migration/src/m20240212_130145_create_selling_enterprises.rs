@@ -104,4 +104,27 @@ enum SellingOrder {
 enum SellingCustomer {
     #[sea_orm(iden = "seliling_customer")]
     Table,
+    #[sea_orm(iden = "customer_id")]
+    Id,
+    Name,
+    ContactNumber,
+    Address,
+}
+
+#[derive(DeriveIden)]
+enum SellingReport {
+    #[sea_orm(iden = "selling_report")]
+    Table,
+    #[sea_orm(iden = "report_id")]
+    Id,
+
+    Price,
+}
+
+#[derive(DeriveIden)]
+enum SellingCustomerFeedback {
+    #[sea_orm(iden = "selling_customer_feedback")]
+    Table,
+    #[sea_orm(iden = "feedback_id")]
+    Id,
 }

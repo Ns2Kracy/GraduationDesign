@@ -1,4 +1,5 @@
 #![allow(clippy::enum_variant_names)]
+#![allow(unused)]
 
 pub use sea_orm_migration::prelude::*;
 
