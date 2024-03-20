@@ -15,6 +15,7 @@ Cargo.lock
 
 logs
 gd.toml
+apps/web/styled-system
 
 # Logs
 logs

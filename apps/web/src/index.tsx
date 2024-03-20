@@ -13,7 +13,7 @@ render(
 	() => (
 		<Router root={Layout}>
 			<Route
-				path="/dashboard"
+				path="/"
 				component={() => {
 					return (
 						<Suspense fallback={<div>loading...</div>}>

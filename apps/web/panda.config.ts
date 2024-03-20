@@ -25,12 +25,5 @@ export default defineConfig({
 	strictPropertyValues: true,
 
 	// The output directory for your css system
-	outdir: "../../packages/styled-system",
-
-	importMap: {
-		css: "@gd/styled-system/css",
-		recipes: "@gd/styled-system/recipes",
-		patterns: "@gd/styled-system/patterns",
-		jsx: "@gd/styled-system/jsx",
-	},
+	outdir: "styled-system",
 });
