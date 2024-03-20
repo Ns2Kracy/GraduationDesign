@@ -1,4 +1,7 @@
-export const Layout = (props: any) => {
+import { RouteSectionProps } from "@solidjs/router";
+import { Component } from "solid-js";
+
+export const Layout: Component<RouteSectionProps> = (props) => {
 	return (
 		<div>
 			<h1>Layout</h1>

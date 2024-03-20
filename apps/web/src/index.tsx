@@ -1,13 +1,14 @@
+import "./index.css";
+
 /* @refresh reload */
 import { Suspense } from "solid-js";
 import { render } from "solid-js/web";
 import { Route, Router } from "@solidjs/router";
 
-import "./index.css";
-import { Layout } from "./layout";
-import { Dashboard } from "./pages/dashboard/Dashboard";
-import { NotFound } from "./pages/404/404";
-import { Auth } from "./pages/auth/Auth";
+import Layout from "./layout";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Auth from "./pages/auth/Auth";
+import NotFound from "./pages/404/404";
 
 render(
 	() => (
