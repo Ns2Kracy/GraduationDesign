@@ -30,6 +30,7 @@ shebang:
 
 alias f := fmt
 alias l := lint
+alias ps := panda-studio
 alias bw := build-web
 alias bds := build-dev-server
 alias bd := build-dev
@@ -52,6 +53,10 @@ lint:
     cargo clippy --all-targets --all-features -- -D warnings
     cd apps/web ; bun run lint
     @echo "All linted! ✨"
+
+panda-studio:
+    @echo "Starting Panda Studio..."
+    cd apps/web ; bun run studio
 
 dev-server:
     @echo "Starting development server..."
