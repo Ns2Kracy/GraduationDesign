@@ -82,7 +82,7 @@ update:
     @echo "All up to date! ✨"
 
 build-dev-server:
-    @echo "Building for production..."
+    @echo "Building development server..."
     cargo build
     @echo "Done!"
 

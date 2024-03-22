@@ -10,9 +10,9 @@ tokio = { workspace = true }
 
 # orm
 sea-orm = { workspace = true, features = [
-    "sqlx-postgres",
-    "runtime-tokio-native-tls",
-    "macros",
+  "sqlx-postgres",
+  "runtime-tokio-native-tls",
+  "macros",
 ] }
 
 # serialization and deserialization
@@ -45,24 +45,24 @@ tracing-subscriber = { version = "0.3.18", features = ["chrono"] }
 tracing-appender = "0.2.3"
 
 # web framework
-axum = { version = "0.7.1", features = ["tracing", "ws"] }
-axum-extra = { version = "0.9.0", features = ["cookie", "typed-header"] }
-hyper = { version = "1.0.1", features = ["full"] }
+axum = { version = "0.7.4", features = ["tracing", "ws"] }
+axum-extra = { version = "0.9.2", features = ["cookie", "typed-header"] }
+hyper = { version = "1.2.0", features = ["full"] }
 tower = { version = "0.4.13", features = ["full"] }
-tower-http = { version = "0.5.0", features = ["full"] }
+tower-http = { version = "0.5.2", features = ["full"] }
 
 # uuid
-uuid = { version = "1.6.1", features = ["v4"] }
+uuid = { version = "1.8.0", features = ["v4"] }
 
 # openapi for api docs
-utoipa = { version = "4.1.0", features = ["axum_extras", "openapi_extensions"] }
+utoipa = { version = "4.2.0", features = ["axum_extras", "openapi_extensions"] }
 utoipa-redoc = { version = "3.0.0", features = ["axum"] }
 
 # for config
 toml = "0.8.8"
 
 # http client
-reqwest = "0.11.23"
+reqwest = "0.12.0"
 
 # handle config
 config = "0.14.0"

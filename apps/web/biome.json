@@ -26,13 +26,6 @@
 		}
 	},
 	"files": {
-		"ignore": [
-			"node_modules",
-			"dist",
-			"target",
-			"crates/*",
-			"apps/server/*",
-			"packages/styled-system/*"
-		]
+		"ignore": ["node_modules", "dist", "styled-system/*"]
 	}
 }
