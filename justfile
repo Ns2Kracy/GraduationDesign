@@ -1,109 +1,93 @@
 _list:
     @just --list
 
-# Cross platform shebang:
-shebang := if os() == 'windows' {
-  'powershell.exe'
-} else {
-  '/usr/bin/env pwsh'
-}
-
 # Set shell for non-Windows OSs:
 set shell := ["sh", "-c"]
 
 # Set shell for Windows OSs:
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 
-# If you have PowerShell Core installed and want to use it,
-# use `pwsh.exe` instead of `powershell.exe`
-
-shebang:
-	#!{{shebang}}
-	$PSV = $PSVersionTable.PSVersion | % {"$_" -split "\." }
-	$psver = $PSV[0] + "." + $PSV[1]
-	if ($PSV[2].Length -lt 4) {
-		$psver += "." + $PSV[2] + " Core"
-	} else {
-		$psver += " Desktop"
-	}
-	echo "PowerShell $psver"
-
-alias f := fmt
-alias l := lint
-alias ps := panda-studio
-alias bw := build-web
-alias bds := build-dev-server
-alias bd := build-dev
-alias brs := build-release-server
-alias br := build-release
+# Aliases
 alias u := update
-alias dw := dev-web
-alias ds := dev-server
-alias sw := start-web
-alias ss := start-server
+alias f := format
+alias l := lint
+alias b := build
+alias ps := panda-studio
+alias s := server
+alias w := web
 
-fmt:
-    @echo "Starting formatters..."
-    cargo fmt --all
-    cd apps/web ; bun run format
-    @echo "All formatted! ✨"
-
-lint:
-    @echo "Starting linters..."
-    cargo clippy --all-targets --all-features -- -D warnings
-    cd apps/web ; bun run lint
-    @echo "All linted! ✨"
-
-panda-studio:
-    @echo "Starting Panda Studio..."
-    cd apps/web ; bun run studio
-
-dev-server:
-    @echo "Starting development server..."
-    cargo run
-
-start-server:
-    @echo "Starting production server..."
-    cargo run --release
-
-dev-web:
-    @echo "Starting web..."
-    cd apps/web ; bun run dev
-
-start-web:
-    @echo "Starting web..."
-    cd apps/web ; bun run preview
-
+# Update dependencies
 update:
-    @echo "Updating dependencies..."
+    echo "Updating dependencies..."
     cargo update
     cd apps/web ; bun update
-    just bds ; just bw
-    @echo "All up to date! ✨"
+    echo "All up to date! ✨"
 
-build-dev-server:
-    @echo "Building development server..."
+# Format the codebase
+format:
+    echo "Starting formatters..."
+    cargo fmt --all
+    cd apps/web ; bun run format
+    echo "All formatted! ✨"
+
+# Lint commands
+lint:
+    echo "Starting linters..."
+    cargo clippy --all-targets --all-features -- -D warnings
+    cd apps/web ; bun run lint
+    echo "All linted! ✨"
+
+# Panda Studio
+panda-studio:
+    echo "Starting Panda Studio..."
+    cd apps/web ; bun run studio
+
+# Start server
+_dev-server:
+    echo "Starting development server..."
+    cargo run
+
+_prod-server:
+    echo "Starting production server..."
+    cargo run --release
+
+server target:
+    echo "Starting server for {{target}}..."
+    just _{{target}}-server
+    echo "{{target}} server started! ✨"
+
+# Start web
+_dev-web:
+    echo "Starting web..."
+    cd apps/web ; bun run dev
+
+_prod-web:
+    echo "Starting web..."
+    cd apps/web ; bun run preview
+
+web target:
+    echo "Starting web for {{target}}..."
+    just _{{target}}-web
+    echo "{{target}} web started! ✨"
+
+# Build commands
+_build-dev-server:
+    echo "Building development server..."
     cargo build
-    @echo "Done!"
+    echo "Development server built! ✨"
 
-build-release-server:
-    @echo "Building production server..."
+_build-release-server:
+    echo "Building production server..."
     cargo build --release
-    @echo "Done!"
+    echo "Production server built! ✨"
 
 build-web:
-    @echo "Building web..."
+    echo "Building web..."
     cd apps/web ; bun run build
-    @echo "Done!"
+    echo "Web built! ✨"
 
-build-dev:
-    @echo "Building development server..."
-    just build-dev-server
+build target:
+    echo "Building for {{target}}..."
+    just _build-{{target}}-server
     just build-web
-    @echo "All built! ✨"
-
-build-release:
-    @echo "Building for production..."
-    just build-release-server
-    just build-web
-    @echo "All built! ✨"
+    echo "{{target}} built! ✨"

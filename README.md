@@ -15,6 +15,8 @@
 
 ## 数据库设计
 
+![数据库设计](./images/db_design.png)
+
 ### 种植管理模块
 
 **农场信息表(Farms Table)**
